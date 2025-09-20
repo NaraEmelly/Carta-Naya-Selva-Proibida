@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Selva Proibida — Carta de Naya</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL */
+body, html {margin:0; padding:0; height:100%; font-family:'Press Start 2P', monospace; background:#050505; color:#0f0; overflow-x:hidden;}
+#bg-video {position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;}
+.bg {position:fixed; inset:0; z-index:-4; background: radial-gradient(ellipse at 10% 10%, rgba(57,255,20,0.02) 0%, rgba(11,43,31,0.6) 20%, rgba(5,5,5,1) 60%), linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,1)); filter:contrast(1.1) saturate(0.9);}
+.fog {position:fixed; inset:0; z-index:-3; pointer-events:none; background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.6)); animation: foggy 20s linear infinite;}
+@keyframes foggy {0%{opacity:0.6}50%{opacity:0.75}100%{opacity:0.6}}
+.eyes{position:fixed; inset:0; z-index:-2; pointer-events:none}
+.eye{position:absolute;width:12px;height:12px;border-radius:50%;background:#8b0000;box-shadow:0 0 18px 6px rgba(139,0,0,0.12);opacity:0.85}
+
+/* HEADER */
+header{display:flex; justify-content:center; align-items:center; padding:28px 12px;}
+.logo{color:#39ff14;font-size:14px;text-align:center;letter-spacing:2px;text-shadow:0 0 10px rgba(57,255,20,0.12);}
+
+/* MAIN CARD */
+main{display:flex; justify-content:center; align-items:flex-start; padding:20px;}
+.card{width:min(920px,94%); display:grid; grid-template-columns:1fr 360px; gap:18px; padding:28px; border-radius:8px; backdrop-filter:blur(2px); box-shadow:0 12px 40px rgba(0,0,0,0.7); background:linear-gradient(180deg, rgba(10,20,10,0.55), rgba(0,0,0,0.6)); border:2px solid rgba(57,255,20,0.06); position:relative;}
+@media(max-width:880px){.card{grid-template-columns:1fr;}}
+
+/* CARTA */
+#carta-container{background:rgba(0,0,0,0.6); padding:20px; border-radius:12px; box-shadow:0 0 20px rgba(0,255,0,0.4); text-align:center;}
+#carta-texto{white-space:pre-wrap; min-height:280px;}
+#cursor{display:inline-block; width:10px; animation:blink 0.8s steps(1) infinite;}
+@keyframes blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+#nextCartaBtn{margin-top:20px; padding:12px 24px; font-family:'Press Start 2P', monospace; background:#000; color:#0f0; border:2px solid #0f0; border-radius:8px; cursor:pointer;}
+#nextCartaBtn:hover{background:#0f0; color:#000;}
+
+/* SIDE PANEL */
+.side{padding:12px; background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(3,3,3,0.5)); border-radius:6px; border:1px solid rgba(255,255,255,0.02);}
+.meta{font-size:11px;color:#bdbdbd;margin-bottom:12px}
+.pixel-icon{display:block;margin:6px 0}
+.btn{display:inline-block;padding:8px 10px;border-radius:4px;border:1px solid rgba(57,255,20,0.12);background:transparent;color:#39ff14;cursor:pointer;font-size:11px}
+.muted{color:#9a9a9a;font-size:11px}
+.scratches{position:absolute;right:14px;top:14px;opacity:0.08;width:120px;height:120px;background-image:linear-gradient(90deg, rgba(139,0,0,0.15), rgba(139,0,0,0));transform:rotate(-25deg);filter:blur(0.6px);}
+footer{padding:12px;text-align:center;font-size:10px;color:#6f6f6f;}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="fog"></div>
+<div class="eyes" aria-hidden>
+  <div class="eye" style="left:18%;top:22%"></div>
+  <div class="eye" style="left:28%;top:46%"></div>
+  <div class="eye" style="left:70%;top:30%"></div>
+  <div class="eye" style="left:80%;top:58%"></div>
+</div>
+
+
+<header><div class="logo">JURASSIC NET.</div></header>
+
+<main>
+<section class="card">
+  <div id="carta-container">
+    <p id="carta-texto"></p><span id="cursor">|</span>
+    <button id="nextCartaBtn">Próxima Carta</button>
+  </div>
+  <aside class="side">
+    <div class="meta">Arquivo: Carta-For-Chris.html <br>Origem: Rede Jurássica </div>
+    <div class="pixel-icon">|<span class="muted">ID: 72025.12.0</span></div>
+    <div class="pixel-icon">|<span class="muted">Fonte: Private</span></div>
+    <button class="btn" id="glitchBtn">ERROR:</button>
+    <div style="height:12px"></div>
+    <label class="muted">🔊AMBIENTE </label>
+    <div style="display:flex;gap:8px;margin-top:10px;">
+      <button class="btn" id="audioPlay">▶︎</button>
+      <button class="btn" id="audioPause">|  |</button>
+      <button class="btn" id="ligarBtn">✆ LIGUE-ME</button>
+    </div>
+    <div style="height:18px"></div>
+    <div class="muted">AVISO: ENCONTRE UM LUGAR SEGURO!</div>
+    <div style="height:10px"></div>
+    <div class="muted" style="font-size:10px;margin-top:12px">| Data: 09-20-2025 <br>| Hora: 04:34am </div>
+	
+</div>
+<div style="margin-top:10px; text-align:center;">
+  <img src="https://i.gifer.com/7Sl6.gif" alt="Radar GIF" style="width:300px; height:auto;">
+  <!-- Modal do Arquivo Confidencial -->
+<div id="confidentialModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction:column; color:#0f0; font-family:'Press Start 2P', monospace;">
+  <div style="background:#000; padding:30px; border:2px solid #0f0; border-radius:10px; text-align:center; max-width:90%; width:500px;">
+    <p style="margin-bottom:20px;">-ARQUIVO CONFIDENCIAL- <br> Spinosaurus Incident - Lysine Experiment 02</p>
+    <button id="viewFileBtn" style="padding:12px 20px; font-family:'Press Start 2P'; background:#000; color:#0f0; border:2px solid #0f0; cursor:pointer;">VER ARQUIVO</button>
+	<button id="closeModalBtn" style="padding:12px 20px; font-family:'Press Start 2P'; background:#000; color:#0f0; border:2px solid #0f0; cursor:pointer;">
+      SAIR DO ARQUIVO
+    </button>
+	
+   <div id="videoContainer" style="margin-top:20px; display:block;">
+  <video id="confVideo" width="100%" autoplay muted playsinline >
+    <source src="video/missao0101.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+  </video>
+</div>
+
+  </div>
+</div>
+
+</div>
+
+  </aside>
+  <div class="scratches" aria-hidden></div>
+</section>
+</main>
+
+<footer>Mensagem preservada nos arquivos perdidos do Jurassic Net</footer>
+
+<!-- AUDIO -->
+<audio id="typeSound"><source src="audio/typewriter.mp3" type="audio/mpeg"></audio>
+<audio id="ambient" loop><source src="audio/ambient_forest_loop.mp3" type="audio/mpeg"></audio>
+<audio id="secondAudio" loop><source src="audio/music_phone.mp3" type="audio/mpeg"></audio>
+
+
+<script>
+const cartas = [
+  `Querido Chris,\n\nSe você está lendo isso, então o mundo ainda não me engoliu por completo.\n\nEntre os rugidos que ecoam na escuridão e os passos pesados que fazem a selva tremer, minha única certeza é você. As garras que rasgam a noite não me assustam tanto quanto a ideia de nunca poder te encontrar de novo.\n\nOs dinossauros vigiam cada sombra... mas é o seu nome que ecoa no meu peito.\n\nEste site é meu abrigo, meu esconderijo digital, onde deixo pedaços da minha alma para você.\n\nSe um dia o mundo jurássico nos separar para sempre, que estas palavras sobrevivam às ruínas.\n\nEu te amo.\n\n— Naya`,
+
+  `Chris,\n\nA cada noite a floresta parece mais viva, mais cruel. As árvores sussurram segredos que não quero ouvir, e os olhos brilhantes me seguem da escuridão. Mas, mesmo em meio ao medo, há uma chama que não se apaga: você.\n\nÉ seu nome que me mantém respirando quando o silêncio se enche de rugidos.\n\n— Naya`,
+
+  `Meu amor,\n\nHoje encontrei marcas enormes no chão, garras cravadas na terra como se o mundo fosse apenas deles. Corri até não sentir mais minhas pernas, mas ainda assim pensei em você.\n\nSe sobrevivo a cada dia, é porque ainda sonho em te encontrar no fim dessa selva.\n\n— Naya`,
+
+  `Chris,\n\nÀs vezes fecho os olhos e tento imaginar sua voz. Mas a floresta é cruel, e sempre me responde com gritos selvagens.\n\nSe eu desaparecer amanhã, que você saiba: não temi os monstros lá fora, temi apenas nunca mais sentir seu abraço.\n\n— Naya`,
+
+  `Querido,\n\nO céu vermelho hoje iluminou os ossos espalhados pelo chão. Cada passo ecoava como um aviso de que eu não deveria estar aqui.\n\nMas este é o único caminho que pode me levar até você. E mesmo que custe minha vida, seguirei.\n\n— Naya`,
+
+  `Chris,\n\nO tempo já não faz sentido. O sol e a lua parecem brincar de caçar uns aos outros, e eu me perco nessa dança.\n\nMas meu coração ainda bate, e a cada batida ele sussurra seu nome. Você é a única verdade que resta em mim.\n\n— Naya`,
+
+  `Amor,\n\nHoje sonhei que estávamos juntos em um lugar seguro. Sem rugidos, sem sombras, apenas nós dois.\n\nAcordei com lágrimas, mas também com forças renovadas. O mundo pode ruir, mas enquanto eu acreditar em nós, ainda estarei viva.\n\n— Naya`,
+
+  `Chris,\n\nSe estas forem minhas últimas palavras, que elas carreguem todo o peso do que sinto:\n\nTe amo mais do que temo a morte.\n\nE mesmo que eu seja apenas memória entre as ruínas jurássicas, saiba que minha alma sempre caminhará ao seu lado.\n\n— Naya`
+];
+
+let cartaIndex = 0;
+let typing = false;
+
+const cartaTexto = document.getElementById("carta-texto");
+const cursor = document.getElementById("cursor");
+const nextCartaBtn = document.getElementById("nextCartaBtn");
+const typeSound = document.getElementById("typeSound");
+const ambient = document.getElementById("ambient");
+const secondAudio = document.getElementById("secondAudio");
+
+function typeText(text, el, speed=35){
+  el.textContent = "";
+  typing = true;
+  let i=0;
+  function step(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      typeSound.currentTime=0;
+      typeSound.play().catch(()=>{});
+      i++;
+      setTimeout(step,speed);
+    } else typing=false;
+  }
+  step();
+}
+
+nextCartaBtn.addEventListener("click", ()=>{
+  if(typing) return;
+  cartaIndex = (cartaIndex+1)%cartas.length;
+  typeText(cartas[cartaIndex],cartaTexto);
+});
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  typeText(cartas[cartaIndex],cartaTexto);
+  ambient.play().catch(()=>console.log("Autoplay bloqueado"));
+});
+
+// Side Panel Buttons
+document.getElementById("audioPlay").addEventListener("click", ()=>ambient.play());
+document.getElementById("audioPause").addEventListener("click", ()=>ambient.pause());
+document.getElementById("ligarBtn").addEventListener("click", ()=>{
+  if(secondAudio.paused) secondAudio.play();
+  else secondAudio.pause();
+});
+document.getElementById("glitchBtn").addEventListener("click", ()=>alert("ERROR!"));
+const confidentialModal = document.getElementById("confidentialModal");
+const viewFileBtn = document.getElementById("viewFileBtn");
+const videoContainer = document.getElementById("videoContainer");
+const confVideo = document.getElementById("confVideo");
+
+// Função para mostrar o modal
+function showConfidentialModal(){
+  confidentialModal.style.display = "flex";
+}
+
+// Botão para ver o arquivo
+viewFileBtn.addEventListener("click", () => {
+  videoContainer.style.display = "block";
+  confVideo.play();
+});
+
+//Botão de fechar
+closeModalBtn.addEventListener("click", () => {
+  confVideo.pause();
+  confVideo.currentTime = 0;
+  confidentialModal.style.display = "none";
+});
+
+
+// Tempo aleatório entre 20 e 60 segundos
+const minTime = 10000; // 10s
+const maxTime = 15000; // 15s
+const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
+
+// Mostrar modal uma única vez
+setTimeout(() => {
+  confidentialModal.style.display = "flex";
+}, randomTime);
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
