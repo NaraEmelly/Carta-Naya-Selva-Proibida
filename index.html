@@ -41,6 +41,70 @@ main{display:flex; justify-content:center; align-items:flex-start; padding:20px;
 .muted{color:#9a9a9a;font-size:11px}
 .scratches{position:absolute;right:14px;top:14px;opacity:0.08;width:120px;height:120px;background-image:linear-gradient(90deg, rgba(139,0,0,0.15), rgba(139,0,0,0));transform:rotate(-25deg);filter:blur(0.6px);}
 footer{padding:12px;text-align:center;font-size:10px;color:#6f6f6f;}
+
+/* Modal base */
+.error-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', monospace;
+  color:#39ff14;
+}
+
+/* Mostrar modal quando checkbox estiver marcado */
+#error-toggle:checked ~ .error-modal {
+  display: flex;
+}
+
+/* Conteúdo do modal */
+.error-content {
+  background: #000;
+  padding: 30px;
+  border: 2px solid #f00;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 90%;
+  width: 500px;
+}
+
+/* Botões de vídeo */
+.video-options label {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  background: #111;
+  border: 2px solid #0f0;
+  color:#39ff14;
+  cursor: pointer;
+}
+
+/* Vídeos ocultos por padrão */
+.video-container {
+  display: none;
+  margin-top: 20px;
+}
+
+/* Mostrar vídeo correspondente */
+#video1:checked ~ .error-modal .video1,
+#video2:checked ~ .error-modal .video2,
+#video3:checked ~ .error-modal .video3 {
+  display: block;
+}
+
+/* Botão de fechar */
+.close-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: #000;
+  color:#39ff14;
+  border: 2px solid #f00;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -68,6 +132,43 @@ footer{padding:12px;text-align:center;font-size:10px;color:#6f6f6f;}
     <div class="pixel-icon">|<span class="muted">ID: 72025.12.0</span></div>
     <div class="pixel-icon">|<span class="muted">Fonte: Private</span></div>
     <button class="btn" id="glitchBtn">ERROR:</button>
+	<!-- Botão ERROR: -->
+<button id="errorBtn" style="padding:12px 20px; font-family:'Press Start 2P'; background:#000; color:#39ff14; border:2px solid #39ff14; cursor:pointer; border-radius:5px;">
+ ARQUIVOS
+</button>
+
+<!-- Modal de seleção de vídeos de erro -->
+<div id="errorModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction:column; color:#39ff14; font-family:'Press Start 2P', monospace;">
+  <div style="background:#000; padding:30px; border:2px solid #39ff14; border-radius:10px; text-align:center; max-width:90%; width:500px;">
+    <p style="margin-bottom:20px;">SELECIONE UM ARQUIVO</p>
+    
+    <!-- Botões para escolher vídeos -->
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <button class="errorVideoOption" data-src="video/Spinosauridae.mp4" style="padding:10px; background:#111; color:#39ff14; border:2px solid #39ff14; cursor:pointer;">
+       ARQUIVO 1
+      </button>
+      <button class="errorVideoOption" data-src="video/Spinosaurusdance.mp4" style="padding:10px; background:#111; color:#39ff14; border:2px solid #39ff14; cursor:pointer;">
+         ARQUIVO 2
+      </button>
+      <button class="errorVideoOption" data-src="video/Haluciraptor.mp4" style="padding:10px; background:#111; color:#39ff14; border:2px solid #39ff14; cursor:pointer;">
+         ARQUIVO 3
+      </button>
+    </div>
+
+    <!-- Container do vídeo -->
+    <div id="errorVideoContainer" style="margin-top:20px; display:none;">
+      <video id="errorVideo" width="100%" controls muted playsinline style="border:2px solid #0f0;">
+        <source src="" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
+
+    <!-- Botão para fechar o modal -->
+    <button id="closeErrorModal" style="margin-top:20px; padding:10px 16px; font-family:'Press Start 2P'; background:#000; color:#39ff14; border:2px solid #39ff14; cursor:pointer;">
+      SAIR
+    </button>
+  </div>
+</div>
     <div style="height:12px"></div>
     <label class="muted">🔊AMBIENTE </label>
     <div style="display:flex;gap:8px;margin-top:10px;">
@@ -93,7 +194,7 @@ footer{padding:12px;text-align:center;font-size:10px;color:#6f6f6f;}
     </button>
 	
    <div id="videoContainer" style="margin-top:20px; display:block;">
-  <video id="confVideo" width="100%" autoplay playsinline >
+  <video id="confVideo" width="100%" autoplay muted playsinline >
     <source src="video/missao0101.mp4" type="video/mp4">
     Seu navegador não suporta vídeo.
   </video>
@@ -180,7 +281,7 @@ document.getElementById("ligarBtn").addEventListener("click", ()=>{
   if(secondAudio.paused) secondAudio.play();
   else secondAudio.pause();
 });
-document.getElementById("glitchBtn").addEventListener("click", ()=>alert("ESPERO QUE TENHA GOSTADO :3 \n IREI FICAR ATUALIZANDO MAIS."));
+document.getElementById("glitchBtn").addEventListener("click", ()=>alert("ERROR!"));
 const confidentialModal = document.getElementById("confidentialModal");
 const viewFileBtn = document.getElementById("viewFileBtn");
 const videoContainer = document.getElementById("videoContainer");
@@ -215,6 +316,37 @@ setTimeout(() => {
   confidentialModal.style.display = "flex";
 }, randomTime);
 
+// Elementos do modal de erro
+const errorBtn = document.getElementById("errorBtn");
+const errorModal = document.getElementById("errorModal");
+const closeErrorModal = document.getElementById("closeErrorModal");
+const errorVideoContainer = document.getElementById("errorVideoContainer");
+const errorVideo = document.getElementById("errorVideo");
+const errorVideoButtons = document.querySelectorAll(".errorVideoOption");
+
+// Abrir modal de erro
+errorBtn.addEventListener("click", () => {
+  errorModal.style.display = "flex";
+});
+
+// Fechar modal de erro
+closeErrorModal.addEventListener("click", () => {
+  errorModal.style.display = "none";
+  errorVideo.pause();
+  errorVideo.currentTime = 0;
+  errorVideoContainer.style.display = "none";
+});
+
+// Selecionar vídeo de erro
+errorVideoButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const src = button.getAttribute("data-src");
+    errorVideo.querySelector("source").setAttribute("src", src);
+    errorVideo.load();
+    errorVideo.play();
+    errorVideoContainer.style.display = "block";
+  });
+});
 
 </script>
 
