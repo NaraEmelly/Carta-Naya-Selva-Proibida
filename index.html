@@ -188,14 +188,13 @@ footer{padding:12px;text-align:center;font-size:10px;color:#6f6f6f;}
 <div id="confidentialModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center; flex-direction:column; color:#0f0; font-family:'Press Start 2P', monospace;">
   <div style="background:#000; padding:30px; border:2px solid #0f0; border-radius:10px; text-align:center; max-width:90%; width:500px;">
     <p style="margin-bottom:20px;">-ARQUIVO CONFIDENCIAL- <br> Spinosaurus Incident - Lysine Experiment 02</p>
-    <button id="viewFileBtn" style="padding:12px 20px; font-family:'Press Start 2P'; background:#000; color:#0f0; border:2px solid #0f0; cursor:pointer;">VER ARQUIVO</button>
+    <button id="viewFileBtn" data-src="video/missao0101.mp4" style="padding:10px; background:#111; color:#39ff14; border:2px solid #39ff14; cursor:pointer;">VER ARQUIVO</button>
 	<button id="closeModalBtn" style="padding:12px 20px; font-family:'Press Start 2P'; background:#000; color:#0f0; border:2px solid #0f0; cursor:pointer;">
       SAIR DO ARQUIVO
     </button>
 	
    <div id="videoContainer" style="margin-top:20px; display:block;">
   <video id="confVideo" width="100%" autoplay muted playsinline control >
-    <source src="video/missao0101.mp4" type="video/mp4">
     Seu navegador não suporta vídeo.
   </video>
 </div>
